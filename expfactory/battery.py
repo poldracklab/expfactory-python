@@ -13,6 +13,7 @@ import uuid
 import os
 import re
 
+import numpy as np
 
 def generate_base(battery_dest,tasks=None,experiment_repo=None,survey_repo=None,game_repo=None,
                   battery_repo=None,warning=True):
@@ -282,7 +283,7 @@ def get_load_static(valid_experiments,url_prefix="",unique=True):
         loadstring = "%s%s%s" %(loadstring,js,css)        
     if unique == True:
         scripts = loadstring.split("\n")
-        scripts_index = list(set(scripts, return_index=True))[1]
+        scripts_index = list(np.unique(scripts, return_index=True))[1]
         # This ensures that scripts are loaded in same order as specified in config.json
         unique_scripts = [scripts[idx] for idx in sorted(scripts_index)]
         loadstring = "\n".join(unique_scripts)
