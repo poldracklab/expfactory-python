@@ -96,6 +96,15 @@ def run_single(exp_id,repo_type,destination=None,source_repo=None,battery_repo=N
         print("Folder exists at %s, cannot generate." %(destination))
 
 
+def get_open_port():
+        import socket
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.bind(("",0))
+        s.listen(1)
+        port = s.getsockname()[1]
+        s.close()
+        return port
+
 def run_battery(destination=None,experiments=None,experiment_folder=None,subject_id=None,battery_folder=None,port=None,time=30):
     '''run_battery runs or previews an entire battery locally with the --run tag. If no experiments are provided, all in the folder will be used.
     :param destination: destination folder for battery. If none provided, tmp directory is used
@@ -124,7 +133,8 @@ def run_battery(destination=None,experiments=None,experiment_folder=None,subject
     
     try:
         if port == None:
-            port = choice(range(8000,9999))
+            # port = choice(range(8000,9999))
+            port = get_open_port()
         Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
         httpd = SocketServer.TCPServer(("", port), Handler)
         print("Preview experiment at localhost:%s" %port)
