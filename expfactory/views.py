@@ -25,7 +25,7 @@ try:
     import SocketServer
 except:
     import http.server as SimpleHTTPServer
-    import socketserver
+    import socketserver as SocketServer
 
 def embed_experiment(folder,url_prefix=""):
     '''embed_experiment

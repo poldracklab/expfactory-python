@@ -316,7 +316,7 @@ def parse_validation(required_counts):
     '''
     validation = ""
     current_page = 1
-    pages = required_counts.keys()
+    pages = list(required_counts.keys())
     pages.sort()
     for page_number in pages:
         if current_page == 1:

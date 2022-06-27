@@ -4,6 +4,7 @@ utils.py: part of expfactory package
 '''
 import errno
 import collections
+from collections.abc import Mapping, Iterable
 import shutil
 import json
 import os
@@ -57,9 +58,9 @@ def remove_unicode_dict(input_dict):
     """
     if isinstance(input_dict, basestring):
         return str(input_dict)
-    elif isinstance(input_dict, collections.Mapping):
+    elif isinstance(input_dict, Mapping):
         return dict(map(remove_unicode_dict, input_dict.items()))
-    elif isinstance(input_dict, collections.Iterable):
+    elif isinstance(input_dict, Iterable):
         return type(input_dict)(map(remove_unicode_dict, input_dict))
     else:
         return input_dict

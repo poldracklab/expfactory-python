@@ -5,7 +5,7 @@ from expfactory.utils import copy_directory, get_installdir, sub_template
 from expfactory.battery import generate, generate_config
 from flask import Flask, render_template, request
 from flask_restful import Resource, Api
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 import webbrowser
 import tempfile
 import shutil

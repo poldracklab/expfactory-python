@@ -13,9 +13,13 @@ from expfactory.vm import download_repo
 from random import choice
 from selenium import webdriver
 from threading import Thread
-import SimpleHTTPServer
+try:
+    import SimpleHTTPServer
+    import SocketServer
+except:
+    import http.server as SimpleHTTPServer
+    import socketserver
 from time import sleep
-import SocketServer
 import webbrowser
 import requests
 import fnmatch
